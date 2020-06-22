@@ -14,6 +14,10 @@ pub fn roman_numbers(input: i32) -> String {
     let mut base = input;
 
     let roman_numbers_list = vec![
+        RomanNumber::new(1000, String::from("M")),
+        RomanNumber::new(900, String::from("CM")),
+        RomanNumber::new(500, String::from("D")),
+        RomanNumber::new(400, String::from("CD")),
         RomanNumber::new(100, String::from("C")),
         RomanNumber::new(90, String::from("XC")),
         RomanNumber::new(50, String::from("L")),
@@ -142,5 +146,30 @@ mod tests {
     #[test]
     fn convert_90() {
         assert_eq!(roman_numbers(90), "XC");
+    }
+
+    #[test]
+    fn convert_400() {
+        assert_eq!(roman_numbers(400), "CD");
+    }
+
+    #[test]
+    fn convert_500() {
+        assert_eq!(roman_numbers(500), "D");
+    }
+
+    #[test]
+    fn convert_900() {
+        assert_eq!(roman_numbers(900), "CM");
+    }
+
+    #[test]
+    fn convert_1000() {
+        assert_eq!(roman_numbers(1000), "M");
+    }
+
+    #[test]
+    fn convert_3999() {
+        assert_eq!(roman_numbers(3999), "MMMCMXCIX");
     }
 }
