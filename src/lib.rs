@@ -1,8 +1,12 @@
 struct RomanNumber {
     base: i32,
     letter: String,
-    lower_base: i32,
-    lower_letter: String,
+}
+
+impl RomanNumber {
+    fn new(base: i32, letter: String) -> Self {
+        RomanNumber { base, letter }
+    }
 }
 
 pub fn roman_numbers(input: i32) -> String {
@@ -10,47 +14,21 @@ pub fn roman_numbers(input: i32) -> String {
     let mut base = input;
 
     let roman_numbers_list = vec![
-        RomanNumber {
-            base: 100,
-            letter: String::from("C"),
-            lower_base: 90,
-            lower_letter: String::from("XC"),
-        },
-        RomanNumber {
-            base: 50,
-            letter: String::from("L"),
-            lower_base: 40,
-            lower_letter: String::from("XL"),
-        },
-        RomanNumber {
-            base: 10,
-            letter: String::from("X"),
-            lower_base: 9,
-            lower_letter: String::from("IX"),
-        },
-        RomanNumber {
-            base: 5,
-            letter: String::from("V"),
-            lower_base: 4,
-            lower_letter: String::from("IV"),
-        },
-        RomanNumber {
-            base: 1,
-            letter: String::from("I"),
-            lower_base: 1,
-            lower_letter: String::from("I"),
-        },
+        RomanNumber::new(100, String::from("C")),
+        RomanNumber::new(90, String::from("XC")),
+        RomanNumber::new(50, String::from("L")),
+        RomanNumber::new(40, String::from("XL")),
+        RomanNumber::new(10, String::from("X")),
+        RomanNumber::new(9, String::from("IX")),
+        RomanNumber::new(5, String::from("V")),
+        RomanNumber::new(4, String::from("IV")),
+        RomanNumber::new(1, String::from("I")),
     ];
 
     for roman_number in roman_numbers_list {
         while base / roman_number.base > 0 {
             result += &roman_number.letter;
             base -= roman_number.base;
-        }
-
-        if base >= roman_number.lower_base {
-            result += &roman_number.lower_letter;
-            base -= roman_number.lower_base
         }
     }
 
