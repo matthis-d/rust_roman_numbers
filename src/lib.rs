@@ -43,133 +43,46 @@ pub fn roman_numbers(input: i32) -> String {
 mod tests {
     use super::*;
 
-    #[test]
-    fn convert_1() {
-        assert_eq!(roman_numbers(1), "I");
+    // This is a macro to be able to parameterize tests
+    // Source: https://stackoverflow.com/a/34666891/1479908
+    macro_rules! roman_numbers_tests {
+        ($($name:ident: $value:expr,)*) => {
+        $(
+            #[test]
+            fn $name() {
+                let (input, expected) = $value;
+                assert_eq!(roman_numbers(input), expected);
+            }
+        )*
+        }
     }
-
-    #[test]
-    fn convert_2() {
-        assert_eq!(roman_numbers(2), "II");
-    }
-
-    #[test]
-    fn convert_3() {
-        assert_eq!(roman_numbers(3), "III");
-    }
-
-    #[test]
-    fn convert_4() {
-        assert_eq!(roman_numbers(4), "IV");
-    }
-
-    #[test]
-    fn convert_5() {
-        assert_eq!(roman_numbers(5), "V");
-    }
-
-    #[test]
-    fn convert_6() {
-        assert_eq!(roman_numbers(6), "VI");
-    }
-
-    #[test]
-    fn convert_7() {
-        assert_eq!(roman_numbers(7), "VII");
-    }
-
-    #[test]
-    fn convert_10() {
-        assert_eq!(roman_numbers(10), "X");
-    }
-
-    #[test]
-    fn convert_9() {
-        assert_eq!(roman_numbers(9), "IX");
-    }
-
-    #[test]
-    fn convert_15() {
-        assert_eq!(roman_numbers(15), "XV");
-    }
-
-    #[test]
-    fn convert_14() {
-        assert_eq!(roman_numbers(14), "XIV");
-    }
-
-    #[test]
-    fn convert_19() {
-        assert_eq!(roman_numbers(19), "XIX");
-    }
-
-    #[test]
-    fn convert_20() {
-        assert_eq!(roman_numbers(20), "XX");
-    }
-
-    #[test]
-    fn convert_21() {
-        assert_eq!(roman_numbers(21), "XXI");
-    }
-
-    #[test]
-    fn convert_39() {
-        assert_eq!(roman_numbers(39), "XXXIX");
-    }
-
-    #[test]
-    fn convert_50() {
-        assert_eq!(roman_numbers(50), "L");
-    }
-
-    #[test]
-    fn convert_40() {
-        assert_eq!(roman_numbers(40), "XL");
-    }
-
-    #[test]
-    fn convert_41() {
-        assert_eq!(roman_numbers(41), "XLI");
-    }
-
-    #[test]
-    fn convert_48() {
-        assert_eq!(roman_numbers(49), "XLIX");
-    }
-
-    #[test]
-    fn convert_100() {
-        assert_eq!(roman_numbers(100), "C");
-    }
-
-    #[test]
-    fn convert_90() {
-        assert_eq!(roman_numbers(90), "XC");
-    }
-
-    #[test]
-    fn convert_400() {
-        assert_eq!(roman_numbers(400), "CD");
-    }
-
-    #[test]
-    fn convert_500() {
-        assert_eq!(roman_numbers(500), "D");
-    }
-
-    #[test]
-    fn convert_900() {
-        assert_eq!(roman_numbers(900), "CM");
-    }
-
-    #[test]
-    fn convert_1000() {
-        assert_eq!(roman_numbers(1000), "M");
-    }
-
-    #[test]
-    fn convert_3999() {
-        assert_eq!(roman_numbers(3999), "MMMCMXCIX");
+    roman_numbers_tests! {
+        convert_1: (1, "I"),
+        convert_2: (2, "II"),
+        convert_3: (3, "III"),
+        convert_4: (4, "IV"),
+        convert_5: (5, "V"),
+        convert_6: (6, "VI"),
+        convert_7: (7, "VII"),
+        convert_9: (9, "IX"),
+        convert_10: (10, "X"),
+        convert_11: (11, "XI"),
+        convert_15: (15, "XV"),
+        convert_14: (14, "XIV"),
+        convert_19: (19, "XIX"),
+        convert_20: (20, "XX"),
+        convert_21: (21, "XXI"),
+        convert_39: (39, "XXXIX"),
+        convert_50: (50, "L"),
+        convert_40: (40, "XL"),
+        convert_41: (41, "XLI"),
+        convert_49: (49, "XLIX"),
+        convert_100: (100, "C"),
+        convert_90: (90, "XC"),
+        convert_400: (400, "CD"),
+        convert_500: (500, "D"),
+        convert_900: (900, "CM"),
+        convert_1000: (1000, "M"),
+        convert_3999: (3999, "MMMCMXCIX"),
     }
 }
